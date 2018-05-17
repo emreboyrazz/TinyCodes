@@ -49,6 +49,10 @@ namespace TinyCodes.HELPERS.LogViewer
 
 		#region Prıvate_Methods
 
+		/*
+			- Controll If there is unCatched errors in update 
+			- Limit instantiated objects
+		*/
 		void PrintLogs(List<string> logList)
 		{
 			DestroyInstantiatedObbjects ();
