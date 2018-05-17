@@ -19,6 +19,7 @@ namespace TinyCodes.HELPERS.LogViewer
 		public Transform LogTextContainer;
 
 		#endregion
+		private LogStruct logStruct;
 
 
 		void OnEnable()
@@ -56,16 +57,24 @@ namespace TinyCodes.HELPERS.LogViewer
 		*/
 		void PrintLogs(List<string> logList)
 		{
+			int counter = 1;
+			GameObject instantiatedTemp=new GameObject();
 			DestroyInstantiatedObbjects ();
 			for (int i=0;i<logList.Count;i++) 
 			{
 				//Collapse
 				if (i > 0 && logList [i].Equals(logList [i - 1])) {
+					++counter;
+					if(logStruct!=null)
+					 logStruct.Collapsedcounter.text = counter.ToString ();
+
 					continue;
 				}
-				GameObject instantiated = Instantiate (LogTextFieldPrefab, LogTextContainer);
-				instantiated.GetComponent<LogStruct> ().LogText.text = logList[i];
 
+				GameObject instantiated = Instantiate (LogTextFieldPrefab, LogTextContainer);
+				logStruct = instantiated.GetComponent<LogStruct> ();
+				logStruct.LogText.text = logList[i];
+				counter = 1;
 			}
 		}
 		void DestroyInstantiatedObbjects()

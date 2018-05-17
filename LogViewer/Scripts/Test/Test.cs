@@ -16,12 +16,19 @@ public class Test : MonoBehaviour
 		logViewerEvents.PrintLogsManuel ("TEST3");
 
 		// Print Log Auto
-		for(int i=0;i<1000;i++)
+		for(int i=0;i<10;i++)
 		{
-			Debug.Log("debug log");
+			Debug.Log("Log one");
+
 		}
 
 		Debug.LogError ("DEBUG ERROR");
+
+		for(int i=0;i<11;i++)
+		{
+			Debug.Log("Log second");
+
+		}
 	}
 
 }

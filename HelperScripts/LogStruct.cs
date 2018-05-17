@@ -6,4 +6,5 @@ using UnityEngine.UI;
 public class LogStruct :MonoBehaviour{
 
 	public Text LogText;
+	public Text Collapsedcounter;
 }
