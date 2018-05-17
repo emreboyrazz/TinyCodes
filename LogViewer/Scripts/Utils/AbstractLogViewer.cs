@@ -19,15 +19,15 @@ namespace TinyCodes.HELPERS.LogViewer
 		public void StockLogMessagesAuto (string condition, string stackTrace, LogType type)
 		{
 			//Show Logs
-			string newLog = "\n [" + type + "]:" + condition;
-			autoLogList.Add (newLog);
+			string newLog = "[" + type + "]:" + condition;
 
 			//Show detailed error message
 			if (type == LogType.Error)
 			{
-				newLog = "\n" + stackTrace;
-				autoLogList.Add (newLog);
+				newLog += "\n" + stackTrace;
+
 			}
+			autoLogList.Add (newLog);
 		}
 
 		public void StockLogMessagesManuel (string log)
