@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TinyCodes.HELPERS.LogViewer{
+namespace TinyCodes.HELPERS.LogViewer
+{
 
 	/// <summary>
-	/// Attach to Main Controller (attached same GO with errorevents.cs)
+	/// Attach to Main Controller (attached same gameobject with LogViewerEvents.cs)
 	/// </summary>
 	/// 
-
-	public class LogViewer : AbstractLogViewer {
-
-		#region Private_Fields
-		#endregion
-
+	[RequireComponent(typeof(LogViewerEvents))]
+	public class LogViewer : AbstractLogViewer 
+	{
 		#region Public_Fields
-		public Text DebugText;
 
+		public GameObject LogTextFieldPrefab;
+		public Transform LogTextContainer;
 
 		#endregion
 
-		void OnEnable(){
+
+		void OnEnable()
+		{
 			Application.logMessageReceived+=StockLogMessagesAuto;
 			GetComponent<LogViewerEvents> ().OnPrint += StockLogMessagesManuel;
 		}
-		void OnDisable(){
+		void OnDisable()
+		{
 			Application.logMessageReceived -= StockLogMessagesAuto;
 			GetComponent<LogViewerEvents> ().OnPrint -= StockLogMessagesManuel;
 		}
@@ -34,21 +36,37 @@ namespace TinyCodes.HELPERS.LogViewer{
 
 		#region Public_Methods
 
-		public void AutoPrintLogs(){
+		public void AutoPrintLogs()
+		{
 			PrintLogs(autoLogList);
 		}
-		public void ManuelPrintLogs(){
+		public void ManuelPrintLogs()
+		{
 			PrintLogs(manuelLogList);
 		}
-		void PrintLogs(List<string> logList){
-			DebugText.text = "";
-			foreach (string logText in logList) {
-				DebugText.text += logText;
-			}
-		}
+
 		#endregion
 
+		#region Prıvate_Methods
 
+		void PrintLogs(List<string> logList)
+		{
+			DestroyInstantiatedObbjects ();
+			foreach (string logText in logList) 
+			{
+				GameObject instantiated = Instantiate (LogTextFieldPrefab, LogTextContainer);
+				instantiated.GetComponent<LogStruct> ().LogText.text = logText;
+			}
+		}
+		void DestroyInstantiatedObbjects()
+		{
+			foreach (Transform child in LogTextContainer) 
+			{
+				GameObject.Destroy(child.gameObject);
+			}
+		}
+
+		#endregion
 
 	}
 }

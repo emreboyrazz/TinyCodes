@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TinyCodes.HELPERS.LogViewer{
+namespace TinyCodes.HELPERS.LogViewer
+{
 
-	public abstract class AbstractLogViewer : MonoBehaviour,ILogViewer {
-		#region Private_Fields
+	public abstract class AbstractLogViewer : MonoBehaviour,ILogViewer 
+	{
+		#region Protected_Fields
+
 		protected List<string> autoLogList=new List<string>();
 		protected List<string> manuelLogList=new List<string>();
+
 		#endregion
 
 		#region ILogViewer implementation
@@ -19,7 +23,8 @@ namespace TinyCodes.HELPERS.LogViewer{
 			autoLogList.Add (newLog);
 
 			//Show detailed error message
-			if (type == LogType.Error) {
+			if (type == LogType.Error)
+			{
 				newLog = "\n" + stackTrace;
 				autoLogList.Add (newLog);
 			}

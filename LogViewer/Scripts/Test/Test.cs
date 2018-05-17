@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TinyCodes.HELPERS.LogViewer;
-public class Test : MonoBehaviour {
+public class Test : MonoBehaviour 
+{
 	 LogViewerEvents logViewerEvents;
 
-	void Start () {
+	void Start () 
+	{
 		logViewerEvents = FindObjectOfType<LogViewerEvents> ();
-		// Print debug Manuel
-		logViewerEvents.PrintLogsManuel ("DENEME1");
-		logViewerEvents.PrintLogsManuel ("DENEME2");
 
+		// Print Log Manuel
+		logViewerEvents.PrintLogsManuel ("TEST1");
+		logViewerEvents.PrintLogsManuel ("TEST2");
+		logViewerEvents.PrintLogsManuel ("TEST3");
 
-		// Print debug Auto
-		for(int i=0;i<1000;i++){
+		// Print Log Auto
+		for(int i=0;i<15;i++)
+		{
 			Debug.Log("debug log");
 		}
-
 
 		Debug.LogError ("DEBUG ERROR");
 	}
