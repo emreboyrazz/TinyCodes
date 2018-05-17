@@ -56,10 +56,15 @@ namespace TinyCodes.HELPERS.LogViewer
 		void PrintLogs(List<string> logList)
 		{
 			DestroyInstantiatedObbjects ();
-			foreach (string logText in logList) 
+			for (int i=0;i<logList.Count;i++) 
 			{
+				//Collapse
+				if (i > 0 && logList [i].Equals(logList [i - 1])) {
+					continue;
+				}
 				GameObject instantiated = Instantiate (LogTextFieldPrefab, LogTextContainer);
-				instantiated.GetComponent<LogStruct> ().LogText.text = logText;
+				instantiated.GetComponent<LogStruct> ().LogText.text = logList[i];
+
 			}
 		}
 		void DestroyInstantiatedObbjects()

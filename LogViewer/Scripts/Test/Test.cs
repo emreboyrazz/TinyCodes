@@ -16,7 +16,7 @@ public class Test : MonoBehaviour
 		logViewerEvents.PrintLogsManuel ("TEST3");
 
 		// Print Log Auto
-		for(int i=0;i<15;i++)
+		for(int i=0;i<1000;i++)
 		{
 			Debug.Log("debug log");
 		}
