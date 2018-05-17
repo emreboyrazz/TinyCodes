@@ -52,6 +52,7 @@ namespace TinyCodes.HELPERS.LogViewer
 		/*
 			- Controll If there is unCatched errors in update 
 			- Limit instantiated objects
+			- Add Clear Button To clear list
 		*/
 		void PrintLogs(List<string> logList)
 		{
