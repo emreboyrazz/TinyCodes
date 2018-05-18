@@ -10,11 +10,6 @@ namespace TinyCodes.HELPERS.LogViewer
 		public struct Logs{
 			public string value;
 			public int counter;
-			public Logs(string val, int count)
-			{
-				this.value=val;
-				this.counter=count;
-			}
 		}
 		#region Protected_Fields
 
@@ -37,7 +32,6 @@ namespace TinyCodes.HELPERS.LogViewer
 			if (type == LogType.Error)
 			{
 				newLog += "\n" + stackTrace;
-
 			}
 			Collapse (newLog,autoLogList);
 		}
@@ -46,8 +40,6 @@ namespace TinyCodes.HELPERS.LogViewer
 		{
 			string newManuelLog = "\n ManuelDebug : " + log;
 			Collapse (newManuelLog,manuelLogList);
-
-			//manuelLogList.Add (newManuelLog);
 		}
 
 		#endregion
@@ -56,11 +48,19 @@ namespace TinyCodes.HELPERS.LogViewer
 		{
 			Logs logs = new Logs ();
 			logs.value = logMessage;
+			logs.counter = 1;
 
-			if (autoLogList.Contains (logs)) {
-				Debug.Log ("Contains " + logMessage);
-			} else {
+			if (!logList.Exists(x => x.value == logMessage))
+			{
 				logList.Add (logs);
+			}
+			else 
+			{
+				int index = logList.FindIndex(item => item.value == logMessage);
+				logs.value = logMessage;
+				logs.counter = logList [index].counter+1;
+
+				logList [index] = logs;
 
 			}
 		}

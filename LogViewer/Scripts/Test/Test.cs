@@ -29,6 +29,8 @@ public class Test : MonoBehaviour
 		for(int i=0;i<11;i++)
 		{
 			Debug.Log("Log second");
+			Debug.Log("Log one");
+
 
 		}
 	}
