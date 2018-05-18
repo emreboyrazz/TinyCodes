@@ -7,10 +7,22 @@ namespace TinyCodes.HELPERS.LogViewer
 
 	public abstract class AbstractLogViewer : MonoBehaviour,ILogViewer 
 	{
+		public struct Logs{
+			public string value;
+			public int counter;
+			public Logs(string val, int count)
+			{
+				this.value=val;
+				this.counter=count;
+			}
+		}
 		#region Protected_Fields
 
-		protected List<string> autoLogList=new List<string>();
-		protected List<string> manuelLogList=new List<string>();
+		//protected List<string> autoLogList=new List<string>();
+		protected List<Logs> manuelLogList=new List<Logs>();
+
+		protected List<Logs> autoLogList = new List<Logs>();
+
 
 		#endregion
 
@@ -27,16 +39,31 @@ namespace TinyCodes.HELPERS.LogViewer
 				newLog += "\n" + stackTrace;
 
 			}
-			autoLogList.Add (newLog);
+			Collapse (newLog,autoLogList);
 		}
 
 		public void StockLogMessagesManuel (string log)
 		{
 			string newManuelLog = "\n ManuelDebug : " + log;
-			manuelLogList.Add (newManuelLog);
+			Collapse (newManuelLog,manuelLogList);
+
+			//manuelLogList.Add (newManuelLog);
 		}
 
 		#endregion
+
+		private void Collapse(string logMessage,List<Logs> logList)
+		{
+			Logs logs = new Logs ();
+			logs.value = logMessage;
+
+			if (autoLogList.Contains (logs)) {
+				Debug.Log ("Contains " + logMessage);
+			} else {
+				logList.Add (logs);
+
+			}
+		}
 
 	}
 }
